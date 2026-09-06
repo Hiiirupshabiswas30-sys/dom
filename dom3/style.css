@@ -1,0 +1,81 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+     /* color:white; */
+    
+}
+html , body{
+    height: 100%;
+    width: 100%;
+   
+}
+body{
+    overflow: hidden;
+    
+}
+main{
+    height: 100%;
+    width: 100%;
+    background-color:black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+ 
+  
+}
+/* button{
+    padding: 15px 30px;
+    font-weight: 600;
+    background-color: rgb(79, 136, 21);
+    border: none;
+    cursor: pointer;
+    position: relative;
+    z-index: 9;
+}
+button:active{
+    scale: 0.95;
+} */
+
+.card{
+    /* height: 450px; */
+    width: 300px;
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    position: absolute;
+}
+.card div{
+    position: relative;
+    overflow:hidden;
+}
+.card img{
+    height: 300px;
+    width: 100%;
+    
+    object-fit:cover;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    
+}
+.card h2{
+    font-size: 30px;
+    color:rgb(152, 91, 11);
+    text-align: center;    
+}
+.card i{
+    position: absolute;
+    top:50%;
+    left: 50%;
+    font-size: 50px;
+    opacity: 0;
+     /* background: linear-gradient(to right bottom,rgb(181, 11, 181),rgb(243, 19, 161)); */
+    background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGr5rgqcGUZzEOJimADEPYnUuJN3foFP2woMC5txo5XlkQbAwrCoHL4P-f&s=10);
+    background-size: cover;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    transform: translate(-50%,-50%) scale(0) rotate(-60deg);
+    transition: all cubic-bezier(.65,.1,.77,1.44) 0.4s;
+}
