@@ -1,5 +1,6 @@
 const reels = [
-  {
+  { 
+    ismuted: true,
     username: "arjun.dev",
     likeCount: 12450,
     isLiked: false,
@@ -12,6 +13,7 @@ const reels = [
     date: "2026-09-01"
   },
   {
+    ismuted: true,
     username: "riya.codes",
     likeCount: 8750,
     isLiked: true,
@@ -24,6 +26,7 @@ const reels = [
     date: "2026-09-02"
   },
   {
+    ismuted: true,
     username: "rahul.travel",
     likeCount: 21300,
     isLiked: true,
@@ -36,6 +39,7 @@ const reels = [
     date: "2026-09-02"
   },
   {
+    ismuted: true,
     username: "neha.fit",
     likeCount: 15600,
     isLiked: false,
@@ -48,6 +52,7 @@ const reels = [
     date: "2026-09-03"
   },
   {
+       ismuted: true,
     username: "sourav.music",
     likeCount: 9820,
     isLiked: true,
@@ -60,30 +65,33 @@ const reels = [
     date: "2026-09-03"
   },
   {
+    ismuted: true,
     username: "ananya.foodie",
     likeCount: 18750,
     isLiked: true,
     commentCount: 403,
     caption: "Good food, good mood 🍕😋",
-    video: "/reels/1.mp4",
+    video: "/reels/6.mp4",
     userprofile: "https://i.pravatar.cc/150?img=25",
     shareCount: 189,
     isFollowed: true,
     date: "2026-09-04"
   },
   {
+    ismuted: true,
     username: "vikas.photography",
     likeCount: 7430,
     isLiked: false,
     commentCount: 124,
     caption: "Chasing golden hour 🌅📸",
-    video: "/reels/2.mp4",
+    video: "/reels/7.mp4",
     userprofile: "https://i.pravatar.cc/150?img=5",
     shareCount: 63,
     isFollowed: false,
     date: "2026-09-04"
   },
   {
+    ismuted: true,
     username: "megha.art",
     likeCount: 11200,
     isLiked: true,
@@ -96,6 +104,7 @@ const reels = [
     date: "2026-09-05"
   },
   {
+    ismuted: true,
     username: "rohan.tech",
     likeCount: 19600,
     isLiked: false,
@@ -108,6 +117,7 @@ const reels = [
     date: "2026-09-05"
   },
   {
+    ismuted: true,
     username: "sneha.daily",
     likeCount: 6540,
     isLiked: true,
@@ -121,20 +131,29 @@ const reels = [
   }
 ];
 
+var allReels = document.querySelector('.all-reels')
+
+// var isMuted = true
+
+function addData(){
 var sum = ''
-reels.forEach(function (elem) {
+reels.forEach(function (elem,idx) {
     sum = sum + ` <div class="reel">
-                   <video autoplay loop muted src="${elem.video}"></video>
+                   <video autoplay loop ${elem.ismuted? 'muted' : ''} src="${elem.video}"></video>
+                   <div class="mute" id=${idx}>
+                   ${elem.ismuted? '<i class="ri-volume-mute-fill"></i>':'<i class="ri-volume-up-line"></i>'}
+               
+             </div>
                     <div class="bottom">
                         <div class="user">
                            <img src="${elem.userprofile}" alt="">
                            <h3>${elem.username}</h3>
-                           <button>${elem.isFollowed ? 'Unfollow' : 'Follow'}</button>
+                           <button id=${idx} class='follow' >${elem.isFollowed ? 'Unfollow' : 'Follow'}</button>
                         </div>
                          <h2>${elem.caption}</h2>
                     </div>
                     <div class="right">
-                        <div class="like">
+                        <div id=${idx} class="like">
                             <h4 class="like-icon icon">${elem.isLiked?'<i class="love ri-heart-3-fill"></i>':'<i class="ri-heart-3-line"></i>' }</h4>
                             <h6>${elem.likeCount}</h6>
                         </div>
@@ -153,8 +172,52 @@ reels.forEach(function (elem) {
                     </div>
                 </div>`
 })
-
-var allReels = document.querySelector('.all-reels')
-
 allReels.innerHTML = sum
+}
+
+addData()
+
+allReels.addEventListener('click',function(dets){
+ 
+
+ if(dets.target.classList.contains('like')){
+    if(!reels[dets.target.id].isLiked){
+      reels[dets.target.id].likeCount++
+      reels[dets.target.id].isLiked = true
+    }else{
+      reels[dets.target.id].likeCount--
+      reels[dets.target.id].isLiked = false
+      
+    }
+    addData()
+  }
+
+  if(dets.target.className === 'follow'){
+    if(!reels[dets.target.id].isFollowed){
+      reels[dets.target.id].isFollowed = true
+    }else{
+      reels[dets.target.id].isFollowed = false
+    }
+    addData()
+  }
+
+    if(dets.target.className === 'mute'){
+    if(!reels[dets.target.id].ismuted){
+      reels[dets.target.id].ismuted = true
+    }else{
+      reels[dets.target.id].ismuted = false
+    }
+    addData()
+  }
+
+  
+  
+})
+
+
+// var arr = [10,20,30,40,50,60]
+
+// arr.forEach(function(elem,idx){
+//   console.log(elem);
+// })
 
